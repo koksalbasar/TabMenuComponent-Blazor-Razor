@@ -1,0 +1,17 @@
+<div class="tabs">
+    @foreach (var tab in TabService.Tabs) 
+    {
+        <div class="tab @(tab.IsActive(TabService.ActiveTab) ? "active" : "")" @onclick="() => SelectTab(tab.Url)">
+            @if(tab.Title != DefaultPage)
+            {
+                @tab.Title <span @onclick="() => RemoveTab(tab)">&nbsp;&nbsp;
+                    <RadzenIcon Icon="highlight_off" class="close"></RadzenIcon>
+                </span>
+            }
+            else
+            {
+                @tab.Title 
+            }
+        </div>
+    }
+</div>
