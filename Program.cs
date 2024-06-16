@@ -9,6 +9,10 @@ builder.Services.AddServerSideBlazor().AddHubOptions(o =>
 {
     o.MaximumReceiveMessageSize = 10 * 1024 * 1024;
 });
+builder.Services.AddScoped<DialogService>();
+builder.Services.AddScoped<NotificationService>();
+builder.Services.AddScoped<TooltipService>();
+builder.Services.AddScoped<ContextMenuService>();
 //*For TabComponent*
 builder.Services.AddScoped<TabService>();
 //*For TabComponent*

@@ -1,13 +1,28 @@
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
+using Radzen;
 
 namespace TabMenuComponent.Components
 {
-    /// <summary>
-    /// Component for managing tabs.
-    /// </summary>
     public partial class TabComponent
     {
         [Parameter] public string DefaultPage { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
+        
+        [Inject]
+        protected DialogService DialogService { get; set; }
+
+        [Inject]
+        protected TooltipService TooltipService { get; set; }
+
+        [Inject]
+        protected ContextMenuService ContextMenuService { get; set; }
+
+        [Inject]
+        protected NotificationService NotificationService { get; set; }
 
         [Inject]
         protected NavigationManager navigationManager { get; set; }
@@ -26,7 +41,6 @@ namespace TabMenuComponent.Components
             }
             TabService.OnChange += StateHasChanged;
         }
-
         protected override void OnAfterRender(bool firstRender)
         {
             if (firstRender)
@@ -35,9 +49,7 @@ namespace TabMenuComponent.Components
             }
         }
 
-        /// <summary>
-        /// Disposes the component.
-        /// </summary>
+
         public void Dispose()
         {
             TabService.OnChange -= StateHasChanged;
@@ -73,5 +85,6 @@ namespace TabMenuComponent.Components
                 isDeleting = true;
             }
         }
+
     }
 }
